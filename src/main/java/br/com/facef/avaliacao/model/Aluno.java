@@ -1,7 +1,14 @@
 package br.com.facef.avaliacao.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "tb_aluno")
 public class Aluno {
 
+    @Id
+    @Column(name = "id_aluno")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
 
