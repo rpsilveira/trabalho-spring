@@ -38,7 +38,7 @@ public class AlunoController {
     @PutMapping("/{id}")
     public ResponseEntity<Aluno> updateAluno(@PathVariable int id, @RequestBody Aluno alunoDetails) {
         Aluno aluno = alunoBusiness.findById(id);
-        aluno.setId(alunoDetails.getId());
+        aluno.setId(id);
         aluno.setNome(alunoDetails.getNome());
         return ResponseEntity.ok().body(alunoBusiness.save(aluno));
     }
