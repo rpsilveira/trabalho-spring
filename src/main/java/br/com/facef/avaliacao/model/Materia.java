@@ -10,7 +10,12 @@ public class Materia {
     @Column(name = "id_materia")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String nome;
+
+    @ManyToOne
+    @PrimaryKeyJoinColumn
+    private Professor professor;
 
     public Materia() {}
 
@@ -33,6 +38,14 @@ public class Materia {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
     }
 
 }

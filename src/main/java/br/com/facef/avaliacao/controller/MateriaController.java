@@ -40,6 +40,7 @@ public class MateriaController {
         Materia materia = materiaBusiness.findById(id);
         materia.setId(id);
         materia.setNome(materiaDetails.getNome());
+        materia.setProfessor(materiaDetails.getProfessor());
         return ResponseEntity.ok().body(materiaBusiness.save(materia));
     }
 

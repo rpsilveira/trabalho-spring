@@ -10,6 +10,7 @@ public class Curso {
     @Column(name = "id_curso")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String nome;
 
     public Curso() {}
