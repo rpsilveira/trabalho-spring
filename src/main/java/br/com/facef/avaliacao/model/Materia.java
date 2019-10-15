@@ -14,7 +14,7 @@ public class Materia {
     private String nome;
 
     @ManyToOne
-    @PrimaryKeyJoinColumn
+    @JoinColumn(name = "professor_id")
     private Professor professor;
 
     public Materia() {}
