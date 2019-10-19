@@ -3,6 +3,8 @@ package br.com.facef.avaliacao.controller;
 import br.com.facef.avaliacao.business.AlunoBusiness;
 import br.com.facef.avaliacao.model.Aluno;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +23,8 @@ public class AlunoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Aluno>> getAllAlunos() {
-        return ResponseEntity.ok().body(alunoBusiness.findAll());
+    public ResponseEntity<List<Aluno>> getAllAlunos(@PageableDefault(size = 10) Pageable pageable) {
+        return ResponseEntity.ok().body(alunoBusiness.findAll(pageable));
     }
 
     @GetMapping("/{id}")

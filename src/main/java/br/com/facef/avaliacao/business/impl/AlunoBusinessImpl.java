@@ -4,6 +4,7 @@ import br.com.facef.avaliacao.business.AlunoBusiness;
 import br.com.facef.avaliacao.model.Aluno;
 import br.com.facef.avaliacao.repository.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,8 +20,8 @@ public class AlunoBusinessImpl implements AlunoBusiness {
     }
 
     @Override
-    public List<Aluno> findAll() {
-        return repository.findAll();
+    public List<Aluno> findAll(Pageable pageable) {
+        return repository.findAll(pageable).getContent();
     }
 
     @Override
