@@ -1,5 +1,6 @@
 package br.com.facef.avaliacao.exception;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -15,7 +16,7 @@ public class RestException {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public Response exception(Exception ex) {
-        return new Response("Erro interno do servidor");
+        return new Response("Erro interno do servidor, class: " + ex.getClass());
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
@@ -34,5 +35,11 @@ public class RestException {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Response exception(EmptyResultDataAccessException ex) {
         return new Response("Registro não encontrado");
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Response exception(DataIntegrityViolationException ex) {
+        return new Response("Houve violação de integridade, verifique os dados informados");
     }
 }
