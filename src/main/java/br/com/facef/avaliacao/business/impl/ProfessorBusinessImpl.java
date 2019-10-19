@@ -4,6 +4,7 @@ import br.com.facef.avaliacao.business.ProfessorBusiness;
 import br.com.facef.avaliacao.model.Professor;
 import br.com.facef.avaliacao.repository.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,8 +20,8 @@ public class ProfessorBusinessImpl implements ProfessorBusiness {
     }
 
     @Override
-    public List<Professor> findAll() {
-        return repository.findAll();
+    public List<Professor> findAll(Pageable pageable) {
+        return repository.findAll(pageable).getContent();
     }
 
     @Override

@@ -3,6 +3,8 @@ package br.com.facef.avaliacao.controller;
 import br.com.facef.avaliacao.business.TurmaBusiness;
 import br.com.facef.avaliacao.model.Turma;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +23,8 @@ public class TurmaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Turma>> getAllTurmas() {
-        return ResponseEntity.ok().body(turmaBusiness.findAll());
+    public ResponseEntity<List<Turma>> getAllTurmas(@PageableDefault(size = 10) Pageable pageable) {
+        return ResponseEntity.ok().body(turmaBusiness.findAll(pageable));
     }
 
     @GetMapping("/{id}")

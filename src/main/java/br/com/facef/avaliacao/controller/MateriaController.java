@@ -3,6 +3,8 @@ package br.com.facef.avaliacao.controller;
 import br.com.facef.avaliacao.business.MateriaBusiness;
 import br.com.facef.avaliacao.model.Materia;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +23,8 @@ public class MateriaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Materia>> getAllMaterias() {
-        return ResponseEntity.ok().body(materiaBusiness.findAll());
+    public ResponseEntity<List<Materia>> getAllMaterias(@PageableDefault(size = 10) Pageable pageable) {
+        return ResponseEntity.ok().body(materiaBusiness.findAll(pageable));
     }
 
     @GetMapping("/{id}")

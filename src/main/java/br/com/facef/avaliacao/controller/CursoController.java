@@ -3,6 +3,8 @@ package br.com.facef.avaliacao.controller;
 import br.com.facef.avaliacao.business.CursoBusiness;
 import br.com.facef.avaliacao.model.Curso;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +23,8 @@ public class CursoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Curso>> getAllCursos() {
-        return ResponseEntity.ok().body(cursoBusiness.findAll());
+    public ResponseEntity<List<Curso>> getAllCursos(@PageableDefault(size = 10) Pageable pageable) {
+        return ResponseEntity.ok().body(cursoBusiness.findAll(pageable));
     }
 
     @GetMapping("/{id}")

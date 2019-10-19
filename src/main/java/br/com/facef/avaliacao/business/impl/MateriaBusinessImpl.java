@@ -4,6 +4,7 @@ import br.com.facef.avaliacao.business.MateriaBusiness;
 import br.com.facef.avaliacao.model.Materia;
 import br.com.facef.avaliacao.repository.MateriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,8 +20,8 @@ public class MateriaBusinessImpl implements MateriaBusiness {
     }
 
     @Override
-    public List<Materia> findAll() {
-        return repository.findAll();
+    public List<Materia> findAll(Pageable pageable) {
+        return repository.findAll(pageable).getContent();
     }
 
     @Override
