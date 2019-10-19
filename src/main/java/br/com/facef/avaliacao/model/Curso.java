@@ -1,7 +1,6 @@
 package br.com.facef.avaliacao.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -21,7 +20,7 @@ public class Curso {
     @JoinTable(name = "tb_curso_materias",
             joinColumns = @JoinColumn(name = "id_curso"),
             inverseJoinColumns = @JoinColumn(name = "id_materia"))
-    @JsonManagedReference
+    @JsonBackReference
     private List<Materia> materias;
 
     public Curso() {}
