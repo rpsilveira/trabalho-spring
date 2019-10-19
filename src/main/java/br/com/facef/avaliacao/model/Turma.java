@@ -1,6 +1,9 @@
 package br.com.facef.avaliacao.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_turma")
@@ -16,6 +19,13 @@ public class Turma {
     private Curso curso;
 
     private String nome;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "tb_aluno_turmas",
+               joinColumns = @JoinColumn(name = "id_turma"),
+               inverseJoinColumns = @JoinColumn(name = "id_aluno"))
+    @JsonManagedReference
+    private List<Aluno> alunos;
 
     public Turma() {}
 
@@ -49,4 +59,11 @@ public class Turma {
         this.curso = curso;
     }
 
+    public List<Aluno> getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(List<Aluno> alunos) {
+        this.alunos = alunos;
+    }
 }
