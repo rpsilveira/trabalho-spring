@@ -16,7 +16,7 @@ public class RestException {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public Response exception(Exception ex) {
-        return new Response("Erro interno do servidor, class: " + ex.getClass());
+        return new Response("Erro interno do servidor, class: " + ex.getClass() + ", message: " + ex.getMessage());
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
