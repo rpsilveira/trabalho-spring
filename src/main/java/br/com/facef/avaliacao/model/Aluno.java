@@ -1,6 +1,6 @@
 package br.com.facef.avaliacao.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,7 +17,7 @@ public class Aluno {
     private String nome;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "alunos")
-    @JsonManagedReference
+    @JsonBackReference
     private List<Turma> turmas;
 
     public Aluno() {}

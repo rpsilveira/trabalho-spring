@@ -1,6 +1,7 @@
 package br.com.facef.avaliacao.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -24,7 +25,8 @@ public class Turma {
     @JoinTable(name = "tb_aluno_turmas",
                joinColumns = @JoinColumn(name = "id_turma"),
                inverseJoinColumns = @JoinColumn(name = "id_aluno"))
-    @JsonBackReference
+    @JsonManagedReference
+    @OrderBy("nome")
     private List<Aluno> alunos;
 
     public Turma() {}
