@@ -1,10 +1,13 @@
 package br.com.facef.avaliacao.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "tb_professor")
-public class Professor {
+public class Professor implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @Column(name = "id_professor")

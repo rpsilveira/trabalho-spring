@@ -1,32 +1,31 @@
 package br.com.facef.avaliacao.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "tb_turma")
-public class Turma {
+public class Turma implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @Column(name = "id_turma")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "curso_id")
-    private Curso curso;
-
     private String nome;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "tb_aluno_turmas",
-               joinColumns = @JoinColumn(name = "id_turma"),
-               inverseJoinColumns = @JoinColumn(name = "id_aluno"))
-    @JsonManagedReference
+    @ManyToOne
+    @JoinColumn(name = "id_curso")
+    private Curso curso;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "turmas")
     @OrderBy("nome")
+    @JsonIgnoreProperties("id")
     private List<Aluno> alunos;
 
     public Turma() {}
