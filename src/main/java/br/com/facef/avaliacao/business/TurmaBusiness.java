@@ -10,4 +10,5 @@ public interface TurmaBusiness {
     Turma findById(int id);
     Turma save(Turma turma);
     void deleteById(int id);
+    List<Turma> findByAluno(String nome);
 }

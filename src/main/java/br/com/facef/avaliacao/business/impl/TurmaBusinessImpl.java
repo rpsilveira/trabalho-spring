@@ -39,4 +39,9 @@ public class TurmaBusinessImpl implements TurmaBusiness {
         repository.deleteById(id);
     }
 
+    @Override
+    public List<Turma> findByAluno(String nome) {
+        return repository.findByAluno(nome);
+    }
+
 }

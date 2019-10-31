@@ -52,4 +52,9 @@ public class TurmaController {
         return ResponseEntity.noContent().build();
     }
 
+    @RequestMapping("/findByAluno")
+    public ResponseEntity<List<Turma>> findByAluno(@RequestParam(value="nome") String nome) {
+        return ResponseEntity.ok().body(turmaBusiness.findByAluno(nome));
+    }
+
 }
