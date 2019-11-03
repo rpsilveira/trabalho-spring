@@ -16,6 +16,6 @@ public interface TurmaRepository extends JpaRepository<Turma, Integer> {
             "on t.id_turma = at.id_turma " +
             "join tb_aluno a " +
             "on at.id_aluno = a.id_aluno " +
-            "where a.nome = ?1", nativeQuery = true)
+            "where a.nome like %?1%", nativeQuery = true)
     public List<Turma> findByAluno(String nome);
 }

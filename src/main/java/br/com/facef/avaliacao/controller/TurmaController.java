@@ -2,6 +2,7 @@ package br.com.facef.avaliacao.controller;
 
 import br.com.facef.avaliacao.business.TurmaBusiness;
 import br.com.facef.avaliacao.model.Turma;
+import br.com.facef.avaliacao.util.URLDecode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -54,7 +55,7 @@ public class TurmaController {
 
     @RequestMapping("/findByAluno")
     public ResponseEntity<List<Turma>> findByAluno(@RequestParam(value="nome") String nome) {
-        return ResponseEntity.ok().body(turmaBusiness.findByAluno(nome));
+        return ResponseEntity.ok().body(turmaBusiness.findByAluno(URLDecode.decodeParam(nome)));
     }
 
 }
